@@ -1,0 +1,20 @@
+{
+  "name": "laravel",
+  "version": "1.0",
+  "authors": [
+    "Informatyka Stosowana <student@example.com>"
+  ],
+  "description": "Demo app",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "foundation": "~5.5.0"
+  }
+}
