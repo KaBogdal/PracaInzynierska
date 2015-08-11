@@ -14,6 +14,14 @@
 Route::pattern('id', '[0-9]+');
 
 Route::get('/', 'HomeController@index');
+
+// route to show the login form
+Route::get('login', array('uses' => 'HomeController@showLogin'));
+
+// route to process the form
+Route::post('login', array('uses' => 'HomeController@doLogin'));
+Route::get('logout', array('uses' => 'HomeController@doLogout'));
+
 Route::get('/books', 'BooksController@index');
 Route::get('/books/{id}', 'BooksController@show');
 Route::get('/books/{id}/edit', 'BooksController@edit');

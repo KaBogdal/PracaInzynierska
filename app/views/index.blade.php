@@ -1,34 +1,21 @@
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="bootstrap.min.css">
+<link rel="stylesheet" href="bootstrap-theme.min.css">
 
-<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-	<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="jquery-1.11.3.min.js"></script>
+<script src="bootstrap.min.js"></script>
 <link rel="stylesheet" href="css.css">
 
 
+@extends('layout.default')
+@section('content')
 
 <div class="container-fluid">
 
-	<!--..................... Naglowej strony glownej ........................-->
-	<div class="page-header" style="margin-top: 0px">
-		<div class="row">
-			<div class="col-md-10">
-				<img alt="Bootstrap Image Preview" src="agh.jpg" />
-			</div>
-			<div class="col-md-2">
-				<br>
-				<button type="button" class="btn btn-success">Zaloguj się</button>
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-3">
 
 
-			<!--.....................Drzewo do wyboru kierunku studiow/ prac ........................-->
+<!--.....................Drzewo do wyboru kierunku studiow/ prac ........................-->
+<div class="row">
+		<div class="col-md-3"> 
 			<div class="tree well">
 				<ul>
 					<!--..................... Drzewo studiow Iwszego stopnia ........................-->
@@ -36,7 +23,7 @@
 						<ul>
 							<li><span><i class="icon-minus-sign"></i>2015/2016</span>
 								<ul>
-									<li><span><i class="icon-leaf"><a href=""></i>Informatyka Stosowana</a></span></li>
+									<li><span><i class="icon-leaf"><a href="#panel-2" data-toggle="tab"></i>Informatyka Stosowana</a></span></li>
 									<li><span><i class="icon-leaf"><a href=""></i>Geofizyka</a></span></li>
 									<li><span><i class="icon-leaf"><a href=""></i>Ochrona Środowiska</a></span></li>
 								</ul></li>
@@ -80,10 +67,15 @@
 							<ul class="nav nav-tabs">
 								<li class="active"><a href="#panel-1" data-toggle="tab">Strona główna</a></li>
 								<li><a href="#panel-2" data-toggle="tab">Prace dyplomowe</a></li>
+								<?php if (Auth::check()) { ?>
+									<li><a href="#panel-3" data-toggle="tab">Konto użytkownika</a></li>
+								<?php }?>
+									
 							</ul>
 
 
 							<div class="tab-content">
+			<!--..................... Zakladka strony głownej ........................-->				
 								<div class="tab-pane active" id="panel-1">
 									<p>
 									 <div class="row" align="center">
@@ -104,6 +96,7 @@
 									</dl>
 									</p>
 								</div>
+			<!--..................... Zakladka dla drzewa rozwijanego ........................-->
 								<div class="tab-pane" id="panel-2">
 									<p>
 									
@@ -112,6 +105,47 @@
 									</p>
 
 								</div>
+			<!--..................... Opis do strony publicznej ........................-->
+								
+								
+								<div class="tab-pane" id="panel-3">
+						
+									<?php
+									if(Auth::check()){
+									//$students = DB::table('users')->where('access','=',0)->get();
+									$accesses = Auth::user()->access;
+									
+									?>
+														
+<!--.................................   Zalogowany jako student    ......................................-->
+						<?php if ($accesses == 0){?>
+						 Jestem zalogowany jako student
+						<?php }?>
+<!--.................................   Zalogowany jako wykładowca    ....................................-->
+						<?php if ($accesses == 1){?>
+						 Jestem zalogowany jako wykładowca
+						 
+						 
+						 
+						 
+						 
+						 
+						 
+						<?php }?>
+<!--.................................   Zalogowany jako dziekan    ....................................-->
+						<?php if ($accesses == 2){?>
+						 Jestem zalogowany jako dziekan
+						<?php } }?>			
+					</div>
+								
+								
+								
+								
+								
+								
+			<!--                                    Koniec bloku                          -->					
+								
+								
 							</div>
 						</div>
 					</div>
@@ -122,7 +156,7 @@
 	</div>
 </div>
 
-
+@stop
 
 
 <script>
