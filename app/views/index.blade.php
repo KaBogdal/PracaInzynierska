@@ -23,15 +23,15 @@
 						<ul>
 							<li><span><i class="icon-minus-sign"></i>2015/2016</span>
 								<ul>
-									<li><span><i class="icon-leaf"><a href="#panel-2" data-toggle="tab"></i>Informatyka Stosowana</a></span></li>
-									<li><span><i class="icon-leaf"><a href=""></i>Geofizyka</a></span></li>
-									<li><span><i class="icon-leaf"><a href=""></i>Ochrona Środowiska</a></span></li>
+									<li><span><i class="icon-leaf"><a class="thesislink" spec="inf" year="2015" lev = "1" href="#panel-2" data-toggle="tab"></i>Informatyka Stosowana</a></span></li>
+									<li><span><i class="icon-leaf"><a class="thesislink" spec="geo" year="2015" lev = "1" href="#panel-2" data-toggle="tab" href=""></i>Geofizyka</a></span></li>
+									<li><span><i class="icon-leaf"><a class="thesislink" spec="os" year="2015" lev = "1" href="#panel-2" data-toggle="tab"></i>Ochrona Środowiska</a></span></li>
 								</ul></li>
 							<li><span><i class="icon-minus-sign"></i>2014/2015</span>
 								<ul>
-									<li><span><i class="icon-leaf"><a href=""></i>Informatyka Stosowana</a></span></li>
-									<li><span><i class="icon-leaf"><a href=""></i>Geofizyka</a></span></li>
-									<li><span><i class="icon-leaf"><a href=""></i>Ochrona Środowiska</a></span></li>
+									<li><span><i class="icon-leaf"><a class="thesislink" spec="inf" year="2014" lev = "1" href="#panel-2" data-toggle="tab"></i>Informatyka Stosowana</a></span></li>
+									<li><span><i class="icon-leaf"><a class="thesislink" spec="geo" year="2014" lev = "1" href="#panel-2" data-toggle="tab"></i>Geofizyka</a></span></li>
+									<li><span><i class="icon-leaf"><a class="thesislink" spec="os" year="2014" lev = "1" href="#panel-2" data-toggle="tab"></i>Ochrona Środowiska</a></span></li>
 							</ul></li>
 							
 						</ul></li>
@@ -40,15 +40,15 @@
 						<ul>
 							<li><span><i class="icon-minus-sign"></i>2015/2016</span>
 							<ul>
-									<li><span><i class="icon-leaf"><a href=""></i>Informatyka Stosowana</a></span></li>
-									<li><span><i class="icon-leaf"><a href=""></i>Geofizyka</a></span></li>
-									<li><span><i class="icon-leaf"><a href=""></i>Ochrona Środowiska</a></span></li>
+									<li><span><i class="icon-leaf"><a class="thesislink" spec="inf" year="2015" lev="2" href="#panel-2" data-toggle="tab"></i>Informatyka Stosowana</a></span></li>
+									<li><span><i class="icon-leaf"><a class="thesislink" spec="geo" year="2015" lev="2" href="#panel-2" data-toggle="tab"></i>Geofizyka</a></span></li>
+									<li><span><i class="icon-leaf"><a class="thesislink" spec="os" year="2015" lev="2" href="#panel-2" data-toggle="tab"></i>Ochrona Środowiska</a></span></li>
 								</ul></li>
 							<li><span><i class="icon-minus-sign"></i>2014/2015</span>
 								<ul>
-									<li><span><i class="icon-leaf"><a href=""></i>Informatyka Stosowana</a></span></li>
-									<li><span><i class="icon-leaf"><a href=""></i>Geofizyka</a></span></li>
-									<li><span><i class="icon-leaf"><a href=""></i>Ochrona Środowiska</a></span></li>
+									<li><span><i class="icon-leaf"><a class="thesislink" spec="inf" year="2014" lev="2" href="#panel-2" data-toggle="tab"></i>Informatyka Stosowana</a></span></li>
+									<li><span><i class="icon-leaf"><a class="thesislink" spec="geo" year="2014" lev="2" href="#panel-2" data-toggle="tab"></i>Geofizyka</a></span></li>
+									<li><span><i class="icon-leaf"><a class="thesislink" spec="os" year="2014" lev="2" href="#panel-2" data-toggle="tab"></i>Ochrona Środowiska</a></span></li>
 							</ul></li>
 						</ul></li>
 				</ul>
@@ -98,10 +98,9 @@
 								</div>
 			<!--..................... Zakladka dla drzewa rozwijanego ........................-->
 								<div class="tab-pane" id="panel-2">
+									
 									<p>
-									
 										Wybierz kierunek z panelu znajdującego się po lewej stronie.
-									
 									</p>
 
 								</div>
@@ -114,7 +113,7 @@
 									if(Auth::check()){
 									//$students = DB::table('users')->where('access','=',0)->get();
 									$accesses = Auth::user()->access;
-									
+									//$names = Auth::user()->name;
 									?>
 														
 <!--.................................   Zalogowany jako student    ......................................-->
@@ -123,13 +122,92 @@
 						<?php }?>
 <!--.................................   Zalogowany jako wykładowca    ....................................-->
 						<?php if ($accesses == 1){?>
-						 Jestem zalogowany jako wykładowca
-						 
-						 
-						 
-						 
-						 
-						 
+					
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-md-12">
+								<br><br>
+									<div class="tabbable" id="tabs-227715">
+										<ul class="nav nav-tabs">
+											<li class="active">
+												<a href="#panel-adding" data-toggle="tab">Dodaj nowy temat pracy</a>
+											</li>
+											<li>
+												<a href="#panel-527248" data-toggle="tab">Section 2</a>
+											</li>
+										</ul>
+										<div class="tab-content">
+<!-- ............................... Dodawanie pracy inżynierskiej ............................... -->
+									<div class="tab-pane active" id="panel-adding">
+										<p>
+											<h4>Dodawanie nowego tematu pracy inżynierskiej</h4>
+													
+											<div class="container-fluid">
+												<div class="row">
+													<div class="col-md-12">
+													
+														<form role="form" action='{{ url("/theses/create") }}' method="post">
+															<div class="form-group" >
+																<label for="subject">
+																	Temat pracy
+																</label>
+																<input type="text" class="form-control" name="subject" />
+															</div>
+															<div class="form-group">
+																<label for="description">
+																	Opis zagadnienia
+																</label>
+																<textarea rows="4" cols="50" class="form-control" name="description">
+																</textarea>
+																<!-- <input type="text" class="form-control" id="description" /> -->
+															</div>
+															<div class="radio">
+															
+																<b>Poziom studiów</b>
+																<br>
+																	<input type="radio" name="level" value="1"/>
+																	Studia inżynierskie												
+																<br><input type="radio" name="level" value="2"/>
+																	Studia magisterskie
+															</div> 
+															<div class="radio">
+																<b>Kierunek studiów</b>
+																<br>
+																<input type="radio" name="spec" value="inf"/>
+																	Informatyka Stosowana
+																<br><input type="radio" name="spec" value="geo"/>
+																	Geofizyka
+																<br><input type="radio" name="spec" value="os"/>
+																	Ochrona Środowiska	
+															</div>
+															<button type="submit" class="btn btn-success">
+																Wyślij
+															</button>
+														</form>
+													</div>
+												</div>
+											</div>		
+										</p>
+					
+										
+	<!-- ............................... FFFFFFFFFFFFFFFFFFFFFFFFF ............................... -->													
+													
+											</div>
+											<div class="tab-pane" id="panel-527248">
+												<p>
+													Howdy, I'm in Section 2.
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						
+						
+						
+						
 						 
 						<?php }?>
 <!--.................................   Zalogowany jako dziekan    ....................................-->
@@ -161,6 +239,14 @@
 
 <script>
 $(function () {
+
+	$('.thesislink').click(function(){
+		$.get('http://localhost:8000/theses/'+$(this).attr('year')+'/'+$(this).attr('spec')+'/'+$(this).attr('lev'), function(data){
+			$('#panel-2').html(data); 
+		});
+	});
+	
+
 	
     $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
     $('.tree li.parent_li > span').on('click', function (e) {

@@ -26,9 +26,12 @@ Route::get('/books', 'BooksController@index');
 Route::get('/books/{id}', 'BooksController@show');
 Route::get('/books/{id}/edit', 'BooksController@edit');
 Route::post('/books/{id}/store', 'BooksController@store');
-Route::post('/books/create', 'BooksController@create');
+Route::post('/theses/create', 'ThesisController@create');
 Route::get('/books/new', 'BooksController@newBook');
 Route::get('/books/{id}/delete', 'BooksController@delete');
 Route::post('/books/{id}/comment', 'BooksController@comment');
 Route::get('/comments', 'CommentsController@index');
 Route::get('/comments/{id}/delete', 'CommentsController@delete');
+
+Route::get('/theses', 'ThesisController@getTheses');
+Route::get('/theses/{date}/{spec}/{level}', 'ThesisController@getThesisInf');

@@ -21,9 +21,9 @@ class CreateUsersTable extends Migration {
           $table->string('email', 320);
           $table->string('password', 64);
 		  $table->integer('access');
-		  $table->integer('thesis_id')->unsigned();
-		  $table->foreign('thesis_id')->references('id')->on('thesis');
-          
+		  $table->integer('thesis_id')->unsigned()->nullable();
+		  $table->foreign('thesis_id')->references('id')->on('theses');
+
           $table->string('remember_token', 100)->nullable();
           $table->timestamps();
       });

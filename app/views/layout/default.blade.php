@@ -1,12 +1,9 @@
-<!doctype html>
+  <!doctype html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>@yield('title')</title>
 	
-	{{ HTML::style('components/foundation/css/foundation.css') }}
-	{{ HTML::style('components/foundation/css/normalize.css') }}
-	{{ HTML::script('components/modernizr/modernizr.js') }}
 
 </head>
 <body>
@@ -18,12 +15,9 @@
 			@yield('content')
 		</div>
 	</div>
-	
-	{{ HTML::script('components/jquery/dist/jquery.js') }}
-	{{ HTML::script('components/foundation/js/foundation.js') }}
-	
+
 	<script>
-		$(document).foundation();
+		//$(document).foundation();
 	</script>
 </body>
 </html>
