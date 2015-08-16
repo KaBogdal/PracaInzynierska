@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Redirect;
 class ThesisController extends BaseController {
 
 	public function index()
@@ -14,10 +15,14 @@ class ThesisController extends BaseController {
 	}
 	
 	public function getThesisInf($year, $spec, $level){
-		return View::make('thesis.index')->withTheses(DB::table('theses')->where('date','=',$year)->where('spec', '=', $spec)->where('level', '=', $level)->get());
+		return View::make('thesis.index')->withTheses(DB::table('theses')->where('date','=',$year)->where('spec', '=', $spec)->where('level', '=', $level)->where('approval','=',true)->get())->withApproval(true);
 		//return DB::table('theses')->where('date','=',$year)->where('spec', '=', $spec)->where('level', '=', $level)->get();
 	}
 	
+	public function getThesisforApproval(){
+		
+		return View::make('thesis.index')->withTheses(DB::table('theses')->where('approval','=',false)->get())->withApproval(false);
+	}
 
 	
 	public function create()
@@ -31,7 +36,16 @@ class ThesisController extends BaseController {
 		$thesis->date = date("Y"); 
 		
 		$thesis->save();
+		return Redirect::to('');
+	}
+	
+	public function approve($id)
+	{
+		$thesis = Thesis::findOrFail($id);
+		$thesis->approval = true;
+		$thesis->save();
 		
+		return $thesis;
 	}
 	
 }

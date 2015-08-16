@@ -19,7 +19,7 @@
 			<div class="tree well">
 				<ul>
 					<!--..................... Drzewo studiow Iwszego stopnia ........................-->
-					<li><span><i class="icon-folder-open"></i> Studia I-wszego stopnia</span>
+					<li><span><i class="icon-folder-open"></i> Studia I-ego stopnia</span>
 						<ul>
 							<li><span><i class="icon-minus-sign"></i>2015/2016</span>
 								<ul>
@@ -36,7 +36,7 @@
 							
 						</ul></li>
 					<!--..................... Drzewo studiow IIgiego stopnia ........................-->
-					<li><span><i class="icon-folder-open"></i> Studia II-giego stopnia</span>
+					<li><span><i class="icon-folder-open"></i> Studia II-ego stopnia</span>
 						<ul>
 							<li><span><i class="icon-minus-sign"></i>2015/2016</span>
 							<ul>
@@ -212,13 +212,56 @@
 						<?php }?>
 <!--.................................   Zalogowany jako dziekan    ....................................-->
 						<?php if ($accesses == 2){?>
-						 Jestem zalogowany jako dziekan
+						
+						
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-md-12">
+								<br><br>
+									<div class="tabbable" id="tabs-203483">
+										<ul class="nav nav-tabs">
+											<li class="active">
+												<a href="#panel-thesises" data-toggle="tab">Prace do zaakceptowania</a>
+											</li>
+											<li>
+												<a href="#panel-450881" data-toggle="tab">Section 2</a>
+											</li>
+										</ul>
+										<div class="tab-content">
+											<div class="tab-pane active" id="panel-thesises">
+												<p>
+												<br>
+													<h4>Poniżej znajduję się prace, czekające na akceptację</h4>
+												</p>
+												
+												
+												
+												
+												
+												
+											</div>
+											<div class="tab-pane" id="panel-450881">
+												<p>
+													Howdy, I'm in Section 2.
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						
+						
+						
+						
+						
+						
+						
 						<?php } }?>			
 					</div>
 								
-								
-								
-								
+
 								
 								
 			<!--                                    Koniec bloku                          -->					
@@ -237,12 +280,22 @@
 @stop
 
 
+
+
 <script>
 $(function () {
 
+	$.get('http://localhost:8000/theses/waitingForApproval', function(data){
+		$('#panel-thesises').html(data); 
+	});
+	
+
 	$('.thesislink').click(function(){
+		
+		var Title = $(this).text();
 		$.get('http://localhost:8000/theses/'+$(this).attr('year')+'/'+$(this).attr('spec')+'/'+$(this).attr('lev'), function(data){
 			$('#panel-2').html(data); 
+			$('#field').html(Title);
 		});
 	});
 	

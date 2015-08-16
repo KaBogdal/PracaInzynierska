@@ -15,6 +15,7 @@ class CreateThesesTable extends Migration {
 		$table->integer('date');
 		$table->text('descr');
 		$table->integer('level');
+		$table->boolean('approval')->default(false);
 		$table->binary('docum')->nullable();
 		$table->integer('student_id')->nullable();
 		$table->integer('lecturer_id')->nullable();

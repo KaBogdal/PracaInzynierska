@@ -12,6 +12,7 @@ public function run()
         'email'    => 's@gmail.com',
         'password' => Hash::make('123'),
     	'access' => 0,
+    	'field' => "inf",
     ));
     User::create(array(
     		'name'     => 'Wojciech Wykladowca',
@@ -19,6 +20,7 @@ public function run()
     		'email'    => 'w@gmail.com',
     		'password' => Hash::make('123'),
     		'access' => 1,
+    		'field' => "0",
     ));
     User::create(array(
     		'name'     => 'Stefan Dziekan',
@@ -26,6 +28,7 @@ public function run()
     		'email'    => 'd@gmail.com',
     		'password' => Hash::make('123'),
     		'access' => 2,
+    		'field' => "0",
     ));
 }
 
