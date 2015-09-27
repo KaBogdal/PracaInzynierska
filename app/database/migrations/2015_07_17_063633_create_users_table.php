@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration {
           $table->string('password', 64);
 		  $table->integer('access');
 		  $table->string('field', 10);
+		  $table->integer('level')->nullable();
 		  $table->integer('thesis_id')->unsigned()->nullable();
 		  $table->foreign('thesis_id')->references('id')->on('theses');
 

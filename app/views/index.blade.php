@@ -117,9 +117,24 @@
 									?>
 														
 <!--.................................   Zalogowany jako student    ......................................-->
-						<?php if ($accesses == 0){?>
-						 Jestem zalogowany jako student
-						<?php }?>
+						<?php if ($accesses == 0){
+						
+							if (Auth::user()->thesis_id == NULL){
+							?>
+							<h3>Twoja praca dyplomowa </h3>
+							<br>Nie masz jeszcze wybranego tematu pracy. Idz do panelu z lewej strony, aby wybrać temat.
+						<?php } else {
+							$thesis = Thesis::findOrFail(Auth::user()->thesis_id);
+							//$subj = $thesis->subject;
+							//$desc = $thesis->descr;
+							$lect = $thesis->lecturer_id;
+							$lect_name = User::findOrFail($lect)->name;?>
+							<h3>Twoja praca dyplomowa </h3>
+							<br><br><font size="3"><div align="left">Temat Twojej pracy: </font><span class="showHide btn btn-success" style="cursor:pointer; font-size: 10px">Rozwiń</span> {{ $thesis->subject }} <div class="extendableText">{{ $thesis->descr }}</div>
+							<font size="3"><div align="left">Twój promotor: </font><?php echo $lect_name ?><div>
+						
+							
+						<?php } }?>
 <!--.................................   Zalogowany jako wykładowca    ....................................-->
 						<?php if ($accesses == 1){?>
 					
@@ -133,7 +148,12 @@
 												<a href="#panel-adding" data-toggle="tab">Dodaj nowy temat pracy</a>
 											</li>
 											<li>
-												<a href="#panel-527248" data-toggle="tab">Section 2</a>
+												<?php
+												$lect_id = Auth::user()->id;
+												?>
+												
+												<a href="#panel-lectorer-thesises" id="my-theses" data-toggle="tab" lecturer = "{{$lect_id}}" >Twoje prace</a>
+												
 											</li>
 										</ul>
 										<div class="tab-content">
@@ -190,13 +210,11 @@
 										</p>
 					
 										
-	<!-- ............................... FFFFFFFFFFFFFFFFFFFFFFFFF ............................... -->													
+	<!-- ...............................  Zaproponowane prace przez wykladowce  ............................... -->													
 													
 											</div>
-											<div class="tab-pane" id="panel-527248">
-												<p>
-													Howdy, I'm in Section 2.
-												</p>
+											<div class="tab-pane" id="panel-lectorer-thesises">
+												
 											</div>
 										</div>
 									</div>
@@ -229,15 +247,6 @@
 										</ul>
 										<div class="tab-content">
 											<div class="tab-pane active" id="panel-thesises">
-												<p>
-												<br>
-													<h4>Poniżej znajduję się prace, czekające na akceptację</h4>
-												</p>
-												
-												
-												
-												
-												
 												
 											</div>
 											<div class="tab-pane" id="panel-450881">
@@ -253,19 +262,12 @@
 						
 						
 						
-						
-						
-						
-						
+		
 						
 						<?php } }?>			
-					</div>
-								
-
-								
+					</div>	
 								
 			<!--                                    Koniec bloku                          -->					
-								
 								
 							</div>
 						</div>
@@ -288,6 +290,12 @@ $(function () {
 	$.get('http://localhost:8000/theses/waitingForApproval', function(data){
 		$('#panel-thesises').html(data); 
 	});
+
+	$('#my-theses').click(function(){
+		$.get('http://localhost:8000/theses/allThesesList/'+$(this).attr('lecturer'), function(data){
+			$('#panel-lectorer-thesises').html(data); 
+		});
+	});
 	
 
 	$('.thesislink').click(function(){
@@ -300,7 +308,6 @@ $(function () {
 	});
 	
 
-	
     $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
     $('.tree li.parent_li > span').on('click', function (e) {
         var children = $(this).parent('li.parent_li').find(' > ul > li');
@@ -316,6 +323,25 @@ $(function () {
 
     $('.tree li.parent_li > span').parent().find(' > ul > li').hide(); //domyslne ukrycie
     
+	
+	$(".extendableText").hide();
+	
+	$('.showHide').on('click',function(button){
+	
+		var theDiv = $(button).find('.extendableText');
+		console.log(theDiv);
+		if( $(this).text() == 'Zwiń')  {
+			$(this).parent().find('.extendableText').hide('slow');
+			$(this).text('Rozwiń');
+			$(this).removeClass('btn-danger').addClass('btn-success');
+		}
+		else{
+			
+			$(this).parent().find('.extendableText').show('slow');
+			 
+			 $(this).text('Zwiń').removeClass('btn-success').addClass('btn-danger');
+		}
+	});
 });
 </script>
 

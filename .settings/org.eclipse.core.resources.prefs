@@ -4,4 +4,5 @@ encoding//app/database/seeds/ThesisTableSeader.php=UTF-8
 encoding//app/views/index.blade.php=UTF-8
 encoding//app/views/layout/partials/menu.blade.php=UTF-8
 encoding//app/views/login.blade.php=UTF-8
+encoding//app/views/thesis/all.blade.php=UTF-8
 encoding//app/views/thesis/index.blade.php=UTF-8

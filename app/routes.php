@@ -34,7 +34,9 @@ Route::get('/comments', 'CommentsController@index');
 Route::get('/comments/{id}/delete', 'CommentsController@delete');
 
 Route::get('/theses', 'ThesisController@getTheses');
-Route::get('/theses/{date}/{spec}/{level}', 'ThesisController@getThesisInf');
 Route::get('/theses/waitingForApproval', 'ThesisController@getThesisforApproval');
+Route::get('/theses/allThesesList/{lecturer}', 'ThesisController@getThesisList');
 Route::get('/theses/{id}/approve', 'ThesisController@approve');
-
+Route::get('/theses/reserved/{id}/student/{student}', 'ThesisController@reserved');
+Route::get('/theses/student/{id}/remove', 'ThesisController@remove');
+Route::get('/theses/{date}/{spec}/{level}', 'ThesisController@getThesisInf');

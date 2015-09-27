@@ -13,6 +13,7 @@ public function run()
         'password' => Hash::make('123'),
     	'access' => 0,
     	'field' => "inf",
+    	'level' => 1,
     ));
     User::create(array(
     		'name'     => 'Wojciech Wykladowca',

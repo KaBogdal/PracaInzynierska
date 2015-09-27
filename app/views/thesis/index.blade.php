@@ -8,7 +8,7 @@ th, td {
 }
 </style>
 
-<?php  if($approval) {?>
+<?php  if(isset($approval) && $approval) {?>
 <h3>Prace dyplomowe dla kierunku: <div id="field" style="display:inline;"> </div> </h3>
 <?php }?>
 @if (!isset($theses) || !count($theses))
@@ -43,23 +43,31 @@ th, td {
 		}
 		}
 		else if(Auth::check() && Auth::user()->access == 0) {
-			if(($thesis->student_id == NULL) ) { ?>
-					<td><div class="btn btn-success">Rezerwuj temat</div></td>
-			<?php }
-			else{ ?>
+			$studentID = Auth::user()-> id;
+			$st_field = Auth::user()-> field;
+			$st_level = Auth::user()-> level;
+			
+				if(($thesis->student_id == NULL && Auth::user()->thesis_id	 == NULL && $thesis->level == $st_level && $thesis->spec == $st_field) ) { ?>
+						<td><div class="btn btn-success reserved" ident="{{ $thesis->id }}" student= "{{ $studentID }}">Rezerwuj temat</div></td>
+				<?php }
+				else if (Auth::user()->thesis_id  == $thesis->id ){?>
+					<td><div class="btn btn-success" disabled="true">Twój temat</div></td>
+					<?php
+				}
+				else if (($thesis->student_id == NULL && Auth::user()->thesis_id  != NULL ) ){?>
+					  <td><div>Temat wolny</div></td>
+					<?php
+				} 
+				else if (($thesis->student_id == NULL && Auth::user()->thesis_id  == NULL && ($thesis->level != $st_level || $thesis->spec != $st_field) ) ){?>
+									  <td><div>Temat wolny</div></td>
+									<?php
+						} 
+				else { ?>
 					<td>Temat zarezerwowany</td>
-			<?php } }
-		else {
-			if(($thesis->student_id == NULL) ) { ?>
-					<td>Temat wolny</td>
-			<?php }
-			else{ ?>
-					<td>Temat zarezerwowany</td>
-			<?php } }
-		?>
 		</tr>
 		<?php 
-		  } ?>
+		  } } } ?>
+		  
 		@endforeach	
 		
 		</table>
@@ -73,8 +81,15 @@ th, td {
 		$.get('http://localhost:8000/theses/'+$(this).attr('ident')+'/approve', function(data){
 			$(button).remove();
 		});
+		window.location=window.location;
 	});
 
+	$( ".reserved").click(function() {
+		var button = this;
+		$.get('http://localhost:8000/theses/reserved/'+$(this).attr('ident')+'/student/'+$(this).attr('student'), function(data){});
+		window.location=window.location;
+	});
+	
 	
 	$(".extendableText").hide();
 
