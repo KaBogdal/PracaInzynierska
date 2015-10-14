@@ -22,16 +22,11 @@ Route::get('login', array('uses' => 'HomeController@showLogin'));
 Route::post('login', array('uses' => 'HomeController@doLogin'));
 Route::get('logout', array('uses' => 'HomeController@doLogout'));
 
-Route::get('/books', 'BooksController@index');
-Route::get('/books/{id}', 'BooksController@show');
-Route::get('/books/{id}/edit', 'BooksController@edit');
-Route::post('/books/{id}/store', 'BooksController@store');
 Route::post('/theses/create', 'ThesisController@create');
-Route::get('/books/new', 'BooksController@newBook');
-Route::get('/books/{id}/delete', 'BooksController@delete');
-Route::post('/books/{id}/comment', 'BooksController@comment');
-Route::get('/comments', 'CommentsController@index');
-Route::get('/comments/{id}/delete', 'CommentsController@delete');
+//Route::post('/theses/addThesis', 'ThesisController@addThesis');
+
+Route::resource('/theses/addThesis', 'ThesisController');
+
 
 Route::get('/theses', 'ThesisController@getTheses');
 Route::get('/theses/waitingForApproval', 'ThesisController@getThesisforApproval');
@@ -39,4 +34,6 @@ Route::get('/theses/allThesesList/{lecturer}', 'ThesisController@getThesisList')
 Route::get('/theses/{id}/approve', 'ThesisController@approve');
 Route::get('/theses/reserved/{id}/student/{student}', 'ThesisController@reserved');
 Route::get('/theses/student/{id}/remove', 'ThesisController@remove');
+
+
 Route::get('/theses/{date}/{spec}/{level}', 'ThesisController@getThesisInf');

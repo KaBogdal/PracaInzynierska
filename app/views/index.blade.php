@@ -130,11 +130,55 @@
 							$lect = $thesis->lecturer_id;
 							$lect_name = User::findOrFail($lect)->name;?>
 							<h3>Twoja praca dyplomowa </h3>
-							<br><br><font size="3"><div align="left">Temat Twojej pracy: </font><span class="showHide btn btn-success" style="cursor:pointer; font-size: 10px">Rozwiń</span> {{ $thesis->subject }} <div class="extendableText">{{ $thesis->descr }}</div>
-							<font size="3"><div align="left">Twój promotor: </font><?php echo $lect_name ?><div>
-						
-							
-						<?php } }?>
+							<br><br><font size="3"><div align="left">Temat Twojej pracy: </div></font><span class="showHide btn btn-success" style="cursor:pointer; font-size: 10px">Rozwiń</span> {{ $thesis->subject }} <div class="extendableText">{{ $thesis->descr }}</div>
+							<font size="3"><div align="left">Twój promotor: </div></font><?php echo $lect_name ?>
+							<?php } }?>
+
+<!--...........    Dodawanie pracy na strone główną    ....................................-->
+						<br><br>
+					   
+					   
+					   
+					   
+					   {{ Form::open(['role' => 'form', 'url' => '/theses/addThesis', 'files'=>true]) }}
+					            <div class="control-group">
+          							<div class="controls">
+			          					{{ Form::file('image') }}
+				  						<p class="errors">{{$errors->first('image')}}</p>
+								
+							        </div>
+						        </div>
+									
+			 
+			     
+				    <div class='form-group' id="success">
+				        {{ Form::submit('Dodaj pracę', ['class' => 'btn btn-success']) }}
+				    </div>
+			 	<font size="1"><div align="left">Uwaga! Po naciśnięciu przycisku: "Wyślij" nie będziesz miał
+							możliwości cofnięcia akcji dodawania pracy- pojawi się ona automatycznie nastronie głównej!</div></font>
+			    {{ Form::close() }}
+								   
+					   
+					   
+					   
+					   <form role="form" action='{{ url("/theses/addThesis") }}' method="post">
+						  <h3><i class='fa fa-folder-open'></i>Dodawanie napisanej pracy</h3>   
+						   <div class="control-group">
+						     <div class="controls">
+						        {{ Form::file('image') }}
+							  <p class="errors">{{$errors->first('image')}}</p>
+							@if(Session::has('error'))
+							<p class="errors">{{ Session::get('error') }}</p>
+							@endif
+						        </div>
+						        </div>		        
+						    <button type="submit" class="btn btn-success">
+								Wyślij
+							</button>
+							<font size="1"><div align="left">Uwaga! Po naciśnięciu przycisku: "Wyślij" nie będziesz miał
+							możliwości cofnięcia akcji dodawania pracy- pojawi się ona automatycznie nastronie głównej!</font>
+					    </form>
+	
 <!--.................................   Zalogowany jako wykładowca    ....................................-->
 						<?php if ($accesses == 1){?>
 					

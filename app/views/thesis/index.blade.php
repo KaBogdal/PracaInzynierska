@@ -42,6 +42,18 @@ th, td {
 		<?php 
 		}
 		}
+		
+		else if(Auth::check() && Auth::user()->access == 1) {
+			if($thesis->student_id == NULL) {
+				echo "<td>Temat wolny</td>";
+			}
+				else {?>
+				<td>
+				Temat zajęty
+				</td>
+				<?php 
+				}
+		}
 		else if(Auth::check() && Auth::user()->access == 0) {
 			$studentID = Auth::user()-> id;
 			$st_field = Auth::user()-> field;
