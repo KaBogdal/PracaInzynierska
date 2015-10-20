@@ -27,13 +27,18 @@ Route::post('/theses/create', 'ThesisController@create');
 
 Route::resource('/theses/addThesis', 'ThesisController');
 
+Route::post('/theses/addReviewer', 'ThesisController@addReviewer');
+Route::post('/theses/addLNote', 'ThesisController@addLNote');
+Route::post('/theses/addRNote', 'ThesisController@addRNote');
 
 Route::get('/theses', 'ThesisController@getTheses');
 Route::get('/theses/waitingForApproval', 'ThesisController@getThesisforApproval');
 Route::get('/theses/allThesesList/{lecturer}', 'ThesisController@getThesisList');
+Route::get('/theses/allReviewedList/{reviewer}', 'ThesisController@getReviewedList');
 Route::get('/theses/{id}/approve', 'ThesisController@approve');
 Route::get('/theses/reserved/{id}/student/{student}', 'ThesisController@reserved');
 Route::get('/theses/student/{id}/remove', 'ThesisController@remove');
+Route::get('/showThesis_{id}', 'ThesisController@show');
 
 
 Route::get('/theses/{date}/{spec}/{level}', 'ThesisController@getThesisInf');

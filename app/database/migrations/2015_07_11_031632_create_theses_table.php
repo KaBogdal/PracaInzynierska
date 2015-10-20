@@ -16,9 +16,14 @@ class CreateThesesTable extends Migration {
 		$table->text('descr');
 		$table->integer('level');
 		$table->boolean('approval')->default(false);
-		$table->binary('docum')->nullable();
+		$table->integer('docum')->nullable();
+		$table->string('fileName')->nullable();
+		//docum 1 -> praca; docum 2-> promotor; docum 3->
 		$table->integer('student_id')->nullable();
 		$table->integer('lecturer_id')->nullable();
+		$table->integer('reviewer')->nullable();
+		$table->float('Lnote')->nullable();
+		$table->float('RNote')->nullable();
 		$table->string('spec', 100);
 		$table->string('remember_token', 100)->nullable();
 		$table->timestamps();

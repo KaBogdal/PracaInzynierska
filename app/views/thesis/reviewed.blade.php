@@ -8,16 +8,16 @@ th, td {
 }
 </style>
 
-<h4><div align="left">Poniżej znajdują się zapronowane przez Ciebie prace</div></h4>
+<h4><div align="left">Poniżej znajdują się prace, dla którch jesteś recenzentem</div></h4>
 
 <table style="width:800px">
 		<tr><th style="width:50%">Temat</th>
 			<th style="width:20%">Kierunek Studiów, Stopień</th>	
-		    <th style="width:30%">Status</th>
+		    <th style="width:30%">Ocena</th>
     	</tr>	
 		@foreach ($theses as $thesis)
 
-		 <?php $lectorers = DB::table('users')->where('access','=',1)->where('id', '=', $thesis->lecturer_id)->get(); 
+		 <?php $lectorers = DB::table('users')->where('access','=',1)->where('id', '=', $thesis->reviewer)->get(); 
 		 foreach ($lectorers as $lectorer)
 		 {
 		?>
@@ -36,32 +36,17 @@ th, td {
 		
 		<?php 
 		if(Auth::check() && Auth::user()->access == 1) {
-			if(($thesis->approval == TRUE)){
-			
-				if(($thesis->student_id == NULL) ) { ?>
-						<td>Temat wolny</td>
-				<?php }
-				elseif (($thesis->student_id != NULL && $thesis->docum == NULL) ){ 
-					$user = User::findOrFail($thesis->student_id);
-					$student_name = $user->name;
-					//$thesis->student_id
-					?>
-						<td>Temat zarezerwowany przez <?php echo $student_name ?> 
-						<div class="btn btn-danger btn-xs remove" ident="{{ $thesis->student_id }}">Odrzuć</div>
-						</td>
-				<?php } 
-				elseif (($thesis->student_id != NULL && $thesis->docum != NULL && $thesis->Lnote == 0)){ ?>
-					<td>Ocena nie wystawiona. Kliknij w temat aby ocenić.</td>
-					</tr>
+			if(($thesis->RNote == NULL)){ 
+				if(($thesis->docum == NULL)) {?>	
+				<td>Praca nie została dodana na serwer. </td> </tr>
 				<?php } 
 				else { ?>
-						<td>Praca oceniona: <?php echo $thesis->Lnote; ?> </td> </tr>
-			
-				<?php } }	
-			else { ?>
-				<td>Temat niezaakceptowany przez dziekana</td>
-				</tr>
-				<?php } } }
+				<td>Ocena nie wystawiona. Kliknij w temat aby ocenić. </td> </tr>
+				
+				<?php } } 
+			else {?>
+				<td>Praca oceniona: <?php echo $thesis->RNote; ?> </td> </tr>
+				<?php } } } 
 			?>
 		@endforeach	
 		

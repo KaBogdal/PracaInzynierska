@@ -26,8 +26,17 @@ th, td {
 		 foreach ($lectorers as $lectorer)
 		 {
 		?>
-
+		
+		
+		<?php if($thesis->docum == 1){ ?>
+		     	<tr><td>  <div><span class="showHide btn btn-success" style="cursor:pointer; font-size: 10px">Rozwiń</span>
+		     	<a href="/showThesis_{{$thesis->id}}" > {{ $thesis->subject }} </a> 
+		     	<div class="extendableText">{{ $thesis->descr }}</div>
+		<?php }
+		else{ ?>
     	<tr><td>  <div><span class="showHide btn btn-success" style="cursor:pointer; font-size: 10px">Rozwiń</span> {{ $thesis->subject }} <div class="extendableText">{{ $thesis->descr }}</div>
+		<?php } ?>
+		
 		</div>  </td> <td><?php echo $lectorer->name; ?></td>
 		
 		<?php 
@@ -35,11 +44,37 @@ th, td {
 			if($thesis->approval) {
 				echo "<td>Praca zaakceptowana</td>";
 			}
-		else {?>
-		<td>
-		<div class="btn btn-success btn-xs accept" ident="{{ $thesis->id }}">Akceptuj</div><div class="btn btn-danger btn-xs reject" >Odrzuć</div>
-		</td>
+			else {
+		
+			if($thesis->reviewer == NULL){
+			
+			$reviewers = DB::table('users')->where('access','=',1)->where('id', '!=', $thesis->lecturer_id)->get();
+				?>
+			
+			<td>
+				{{ Form::open(['role' => 'form', 'url' => '/theses/addReviewer']) }}
+				  {{ Form::hidden('thesis_id', $thesis->id) }}
+				  
+				  <select name="reviever_id">
+				    @foreach ($reviewers as $reviewer) 
+				  	 <option value="<?php echo $reviewer->id ?>"> <?php echo $reviewer->name ?></option>
+				  	@endforeach
+				  </select>
+				  <br><br>
+				  <div class='form-group' id="success">
+					{{ Form::submit('Dodaj recenzenta', ['class' => 'btn btn-success btn-xs']) }}
+				  </div>
+				 {{ Form::close() }}
+			</td>
+		
+			
+			<?php } else { ?>
+				<td>
+				<div class="btn btn-success btn-xs accept" ident="{{ $thesis->id }}">Akceptuj</div>
+				<!--   <div class="btn btn-danger btn-xs reject" >Odrzuć</div> -->
+				</td>
 		<?php 
+			}
 		}
 		}
 		
@@ -88,6 +123,9 @@ th, td {
 
 	
 <script>
+
+	
+
 	$( ".accept" ).click(function() {
 		var button = this;
 		$.get('http://localhost:8000/theses/'+$(this).attr('ident')+'/approve', function(data){
@@ -101,6 +139,10 @@ th, td {
 		$.get('http://localhost:8000/theses/reserved/'+$(this).attr('ident')+'/student/'+$(this).attr('student'), function(data){});
 		window.location=window.location;
 	});
+
+// 	$.get('http://localhost:8000/showThesis/' + $(this).attr('theses_id'), function(data){
+// 		$('#thesis_details').html(data); 
+// 	});
 	
 	
 	$(".extendableText").hide();

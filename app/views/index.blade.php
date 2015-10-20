@@ -117,67 +117,58 @@
 									?>
 														
 <!--.................................   Zalogowany jako student    ......................................-->
-						<?php if ($accesses == 0){
+						<?php 
+						
+						if ($accesses == 0){
 						
 							if (Auth::user()->thesis_id == NULL){
 							?>
 							<h3>Twoja praca dyplomowa </h3>
 							<br>Nie masz jeszcze wybranego tematu pracy. Idz do panelu z lewej strony, aby wybrać temat.
-						<?php } else {
+						<?php } 
+						else {
+							
 							$thesis = Thesis::findOrFail(Auth::user()->thesis_id);
+								
 							//$subj = $thesis->subject;
 							//$desc = $thesis->descr;
 							$lect = $thesis->lecturer_id;
 							$lect_name = User::findOrFail($lect)->name;?>
 							<h3>Twoja praca dyplomowa </h3>
+							<?php if($thesis->docum == 1){ ?>
+						     	<br><br><font size="3"><div align="left">Temat Twojej pracy: <div><span class="showHide btn btn-success" style="cursor:pointer; font-size: 10px">Rozwiń</span>
+						     	<a href="/showThesis_{{$thesis->id}}" > {{ $thesis->subject }} </a> 
+						     	<div class="extendableText">{{ $thesis->descr }}</div>
+						     	<font size="3"><div align="left">Twój promotor: </div></font><?php echo $lect_name ?>
+								<?php }
+								else{ ?>
 							<br><br><font size="3"><div align="left">Temat Twojej pracy: </div></font><span class="showHide btn btn-success" style="cursor:pointer; font-size: 10px">Rozwiń</span> {{ $thesis->subject }} <div class="extendableText">{{ $thesis->descr }}</div>
 							<font size="3"><div align="left">Twój promotor: </div></font><?php echo $lect_name ?>
-							<?php } }?>
-
-<!--...........    Dodawanie pracy na strone główną    ....................................-->
+								<?php } ?>
+							<!--...........    Dodawanie pracy na strone główną    ....................................-->
 						<br><br>
-					   
-					   
-					   
-					   
-					   {{ Form::open(['role' => 'form', 'url' => '/theses/addThesis', 'files'=>true]) }}
-					            <div class="control-group">
-          							<div class="controls">
-			          					{{ Form::file('image') }}
-				  						<p class="errors">{{$errors->first('image')}}</p>
-								
-							        </div>
-						        </div>
-									
-			 
-			     
-				    <div class='form-group' id="success">
-				        {{ Form::submit('Dodaj pracę', ['class' => 'btn btn-success']) }}
-				    </div>
-			 	<font size="1"><div align="left">Uwaga! Po naciśnięciu przycisku: "Wyślij" nie będziesz miał
-							możliwości cofnięcia akcji dodawania pracy- pojawi się ona automatycznie nastronie głównej!</div></font>
-			    {{ Form::close() }}
-								   
-					   
-					   
-					   
-					   <form role="form" action='{{ url("/theses/addThesis") }}' method="post">
-						  <h3><i class='fa fa-folder-open'></i>Dodawanie napisanej pracy</h3>   
-						   <div class="control-group">
-						     <div class="controls">
-						        {{ Form::file('image') }}
-							  <p class="errors">{{$errors->first('image')}}</p>
-							@if(Session::has('error'))
-							<p class="errors">{{ Session::get('error') }}</p>
-							@endif
-						        </div>
-						        </div>		        
-						    <button type="submit" class="btn btn-success">
-								Wyślij
-							</button>
-							<font size="1"><div align="left">Uwaga! Po naciśnięciu przycisku: "Wyślij" nie będziesz miał
-							możliwości cofnięcia akcji dodawania pracy- pojawi się ona automatycznie nastronie głównej!</font>
-					    </form>
+							<?php if( $thesis->fileName == NULL){ ?>
+								   {{ Form::open(['role' => 'form', 'url' => '/theses/addThesis', 'files'=>true]) }}
+								            <div class="control-group">
+			          							<div class="controls">
+						          					{{ Form::file('image') }}
+							  						<p class="errors">{{$errors->first('image')}}</p>
+											
+										        </div>
+									        </div>
+							    <div class='form-group' id="success">
+							        {{ Form::submit('Dodaj pracę', ['class' => 'btn btn-success']) }}
+							    </div>
+						 	<font size="1"><div align="left">Uwaga! Po naciśnięciu przycisku: "Wyślij" nie będziesz miał
+										możliwości cofnięcia akcji dodawania pracy- pojawi się ona automatycznie na stronie głównej!</div></font>
+						    {{ Form::close() }}
+						   <?php  } 
+						    else {?>
+						    	<font size="3"><div align="left">Twoja praca została już wrzucona na serwer.</div></font>
+										
+							<?php } } }?>
+
+
 	
 <!--.................................   Zalogowany jako wykładowca    ....................................-->
 						<?php if ($accesses == 1){?>
@@ -197,7 +188,9 @@
 												?>
 												
 												<a href="#panel-lectorer-thesises" id="my-theses" data-toggle="tab" lecturer = "{{$lect_id}}" >Twoje prace</a>
-												
+											</li>
+											<li>
+												<a href="#panel-reviewer-thesises" id="review-theses" data-toggle="tab" reviewer = "{{$lect_id}}" >Prace recenzowane</a>
 											</li>
 										</ul>
 										<div class="tab-content">
@@ -258,6 +251,9 @@
 													
 											</div>
 											<div class="tab-pane" id="panel-lectorer-thesises">
+												
+											</div>
+											<div class="tab-pane" id="panel-reviewer-thesises">
 												
 											</div>
 										</div>
@@ -340,7 +336,12 @@ $(function () {
 			$('#panel-lectorer-thesises').html(data); 
 		});
 	});
-	
+
+	$('#review-theses').click(function(){
+		$.get('http://localhost:8000/theses/allReviewedList/'+$(this).attr('reviewer'), function(data){
+			$('#panel-reviewer-thesises').html(data); 
+		});
+	});
 
 	$('.thesislink').click(function(){
 		
