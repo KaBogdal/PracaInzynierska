@@ -91,10 +91,11 @@ th, td {
 		}
 		else if(Auth::check() && Auth::user()->access == 0) {
 			$studentID = Auth::user()-> id;
-			$st_field = Auth::user()-> field;
-			$st_level = Auth::user()-> level;
+			$field_id = Auth::user()->field_id;
+			//$st_field = DB::table('fields')->where('id','=',$field_id)->get()[0]->field; //Auth::user()-> field;
+			//$st_level = DB::table('fields')->where('id','=',$field_id)->get()[0]->level; //Auth::user()-> level;
 			
-				if(($thesis->student_id == NULL && Auth::user()->thesis_id	 == NULL && $thesis->level == $st_level && $thesis->spec == $st_field) ) { ?>
+				if(($thesis->student_id == NULL && Auth::user()->thesis_id == NULL && $thesis->field_id == $field_id ) ) { ?>
 						<td><div class="btn btn-success reserved" ident="{{ $thesis->id }}" student= "{{ $studentID }}">Rezerwuj temat</div></td>
 				<?php }
 				else if (Auth::user()->thesis_id  == $thesis->id ){?>
@@ -105,7 +106,7 @@ th, td {
 					  <td><div>Temat wolny</div></td>
 					<?php
 				} 
-				else if (($thesis->student_id == NULL && Auth::user()->thesis_id  == NULL && ($thesis->level != $st_level || $thesis->spec != $st_field) ) ){?>
+				else if (($thesis->student_id == NULL && Auth::user()->thesis_id  == NULL && ($thesis->field_id != $field_id) ) ){?>
 									  <td><div>Temat wolny</div></td>
 									<?php
 						} 

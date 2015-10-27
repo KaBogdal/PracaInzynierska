@@ -5,65 +5,90 @@ class UserTableSeeder extends Seeder
 
 public function run()
 {
+//------------------------------------------------------------------ Students
     DB::table('users')->delete();
     User::create(array(
-        'name'     => 'Marian Student',
-        'username' => 'studentM',
-        'email'    => 'ms@gmail.com',
+        'name'     => 'Karol Kuzora',
+        'username' => 'KuzoraK',
+        'email'    => 'kk@gmail.com',
         'password' => Hash::make('123'),
     	'access' => 0,
-    	'field' => "inf",
-    	'level' => 1,
+    	'field_id' => 1,
     ));
     User::create(array(
-    		'name'     => 'Anna Studentka',
-    		'username' => 'studentkaA',
-    		'email'    => 'as@gmail.com',
+    		'name'     => 'Anna Mała',
+    		'username' => 'MałaA',
+    		'email'    => 'am@gmail.com',
     		'password' => Hash::make('123'),
     		'access' => 0,
-    		'field' => "geo",
-    		'level' => 1,
+    		'field_id' => 2,
     ));
     User::create(array(
-    		'name'     => 'Tadeusz Student',
-    		'username' => 'studentT',
-    		'email'    => 'ts@gmail.com',
+    		'name'     => 'Tadeusz Woźny',
+    		'username' => 'WoźnyT',
+    		'email'    => 'tw@gmail.com',
     		'password' => Hash::make('123'),
     		'access' => 0,
-    		'field' => "os",
-    		'level' => 1,
+    		'field_id' => 3,
     ));
     User::create(array(
-    		'name'     => 'Wojciech Wykladowca',
-    		'username' => 'wykladowcaW',
-    		'email'    => 'ww@gmail.com',
+    		'name'     => 'Wojciech Pocieszny',
+    		'username' => 'PociesznyW',
+    		'email'    => 'wp@gmail.com',
+    		'password' => Hash::make('123'),
+    		'access' => 0,
+    		'field_id' => 4,
+    ));
+    User::create(array(
+    		'name'     => 'Dorota Zawadzka',
+    		'username' => 'ZawadzkaD',
+    		'email'    => 'dz@gmail.com',
+    		'password' => Hash::make('123'),
+    		'access' => 0,
+    		'field_id' => 5,
+    ));
+    User::create(array(
+    		'name'     => 'Stefan Przepiórczy',
+    		'username' => 'PrzepiórczyS',
+    		'email'    => 'sp@gmail.com',
+    		'password' => Hash::make('123'),
+    		'access' => 0,
+    		'field_id' => 1,
+    ));
+//------------------------------------------------------------------ Lecturers
+    User::create(array(
+    		'name'     => 'Atoni Krem',
+    		'username' => 'KremA',
+    		'email'    => 'ak@gmail.com',
     		'password' => Hash::make('123'),
     		'access' => 1,
-    		'field' => "0",
+    		
     ));
     User::create(array(
-    		'name'     => 'Marian Wykladowca',
-    		'username' => 'wykladowcaM',
+    		'name'     => 'Marian Wielki',
+    		'username' => 'WielkiM',
     		'email'    => 'mw@gmail.com',
     		'password' => Hash::make('123'),
     		'access' => 1,
-    		'field' => "0",
+    		
     ));
     User::create(array(
-    		'name'     => 'Stefan Wykladowca',
-    		'username' => 'wykladowcaS',
-    		'email'    => 'sw@gmail.com',
+    		'name'     => 'Bogumiła Wąs',
+    		'username' => 'WąsB',
+    		'email'    => 'bw@gmail.com',
     		'password' => Hash::make('123'),
     		'access' => 1,
-    		'field' => "0",
+    		
     ));
+
+//------------------------------------------------------------------ Boss
     User::create(array(
-    		'name'     => 'Stefan Dziekan',
-    		'username' => 'dziekan',
-    		'email'    => 'd@gmail.com',
+    		'name'     => 'Adam Profesor',
+    		'username' => 'Admin',
+    		'email'    => 'a@gmail.com',
     		'password' => Hash::make('123'),
     		'access' => 2,
-    		'field' => "0",
+    		
     ));
 }
 

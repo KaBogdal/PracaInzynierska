@@ -31,7 +31,14 @@ th, td {
 		</div>  </td>
 		<?php } ?>
 		<td>
-		{{ $thesis->spec }}, {{ $thesis->level }}
+		<?php 
+	    $st_field = DB::table('fields')->where('id','=',$thesis->id)->get()[0]->field; //Auth::user()-> field;
+		$st_level = DB::table('fields')->where('id','=',$thesis->id)->get()[0]->level; //Auth::user()-> level;
+		
+		echo $st_field;
+		echo "; ";
+		echo $st_level;  
+		?>
 		</td>
 		
 		<?php 

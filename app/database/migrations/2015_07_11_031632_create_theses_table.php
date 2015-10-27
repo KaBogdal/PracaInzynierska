@@ -14,7 +14,6 @@ class CreateThesesTable extends Migration {
 		$table->string('subject', 200);
 		$table->integer('date');
 		$table->text('descr');
-		$table->integer('level');
 		$table->boolean('approval')->default(false);
 		$table->integer('docum')->nullable();
 		$table->string('fileName')->nullable();
@@ -24,7 +23,12 @@ class CreateThesesTable extends Migration {
 		$table->integer('reviewer')->nullable();
 		$table->float('Lnote')->nullable();
 		$table->float('RNote')->nullable();
-		$table->string('spec', 100);
+		
+		$table->integer('field_id')->unsigned()->nullable();
+		$table->foreign('field_id')->references('id')->on('fields');
+		
+		//$table->string('spec', 10)->unsigned()->nullable();
+		//$table->foreign('spec')->references('field')->on('fields');
 		$table->string('remember_token', 100)->nullable();
 		$table->timestamps();
 		});

@@ -133,17 +133,20 @@
 							//$subj = $thesis->subject;
 							//$desc = $thesis->descr;
 							$lect = $thesis->lecturer_id;
-							$lect_name = User::findOrFail($lect)->name;?>
+							$lect_name = User::findOrFail($lect)->name;
+							$rec = User::findOrFail($thesis->reviewer)->name?>
 							<h3>Twoja praca dyplomowa </h3>
 							<?php if($thesis->docum == 1){ ?>
 						     	<br><br><font size="3"><div align="left">Temat Twojej pracy: <div><span class="showHide btn btn-success" style="cursor:pointer; font-size: 10px">Rozwiń</span>
 						     	<a href="/showThesis_{{$thesis->id}}" > {{ $thesis->subject }} </a> 
 						     	<div class="extendableText">{{ $thesis->descr }}</div>
-						     	<font size="3"><div align="left">Twój promotor: </div></font><?php echo $lect_name ?>
+						     	<font size="3"><div align="left">Twój promotor: </font><?php echo $lect_name ?> </div>
+						     	<font size="3"><div align="left">Twój recenzent: </font><?php echo $rec ?> </div>
 								<?php }
 								else{ ?>
 							<br><br><font size="3"><div align="left">Temat Twojej pracy: </div></font><span class="showHide btn btn-success" style="cursor:pointer; font-size: 10px">Rozwiń</span> {{ $thesis->subject }} <div class="extendableText">{{ $thesis->descr }}</div>
-							<font size="3"><div align="left">Twój promotor: </div></font><?php echo $lect_name ?>
+							<font size="3"><div align="left">Twój promotor: </font><?php echo $lect_name ?></div>
+							<font size="3"><div align="left">Twój recenzent: </font><?php echo $rec ?> </div>
 								<?php } ?>
 							<!--...........    Dodawanie pracy na strone główną    ....................................-->
 						<br><br>
