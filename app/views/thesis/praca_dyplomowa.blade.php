@@ -37,8 +37,7 @@ $thesis = DB::table('theses')->where('id','=',$id)->get()[0];
 			  	<br>	
 			<?php 	$filename= "/assets/thesis_".$id."/".$thesis->fileName;
 			?> 
-			<?php $lect = DB::table('users')->where('id','=', $thesis->lecturer_id)->get()[0];
-				  $rev = DB::table('users')->where('id','=', $thesis->reviewer)->get()[0]; ?>
+			<?php $lect = DB::table('users')->where('id','=', $thesis->lecturer_id)->get()[0]; ?>
 			
 			<div align="center"><a href="{{URL::asset($filename)}}"> Wyświetl pracę dyplomową  </a> </div>
 						<font size="3"><div align="center">Promotor : <?php echo $lect->name ?> 
@@ -53,7 +52,27 @@ $thesis = DB::table('theses')->where('id','=',$id)->get()[0];
 						<?php 
 						
 						if (Auth::check() && Auth::user()->access == 1 && Auth::user()->id == $thesis->lecturer_id && $thesis->Lnote == NULL){
-						?>	
+								
+							if($thesis->reviewer == NULL) {
+								
+							$reviewers = DB::table('users')->where('access','=',1)->where('id', '!=', $thesis->lecturer_id)->get();
+							?>	
+							
+										{{ Form::open(['role' => 'form', 'url' => '/theses/addReviewer']) }}
+										  {{ Form::hidden('thesis_id', $thesis->id) }}
+										  
+										  <select name="reviever_id">
+										    @foreach ($reviewers as $reviewer) 
+										  	 <option value="<?php echo $reviewer->id ?>"> <?php echo $reviewer->name ?></option>
+										  	@endforeach
+										  </select>
+										  <br><br>
+										  <div class='form-group' id="success">
+											{{ Form::submit('Dodaj recenzenta', ['class' => 'btn btn-success btn-xs']) }}
+										  </div>
+										 {{ Form::close() }}
+									
+							<?php } else {?>
 							
 							{{ Form::open(['role' => 'form', 'url' => '/theses/addLNote']) }}
 							{{ Form::hidden('thesis_id', $thesis->id) }}
@@ -73,16 +92,22 @@ $thesis = DB::table('theses')->where('id','=',$id)->get()[0];
 							{{ Form::close() }}
 							
 					
-					<?php } ?> 
+					<?php } } ?> 
+					
 						
 						</div>
+						
+						<?php  
+						if($thesis->reviewer != NULL){
+						$rev = DB::table('users')->where('id','=', $thesis->reviewer)->get()[0]; ?>
 						<font size="3"><div align="center">Recenzent : <?php echo $rev->name ?> 
 						<br> Ocena recenzenta: 
 						<?php if ($thesis->RNote == NULL)
 							echo "Brak";
 								else 
 							echo $thesis->RNote;
-						?>
+						}
+								?>
 						
 <!--.................................   Zalogowany jako recenzent    ......................................-->
 						<?php 

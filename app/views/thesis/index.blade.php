@@ -38,19 +38,22 @@ th, td {
 		<?php } ?>
 		
 		</div>  </td> <td><?php echo $lectorer->name; ?></td>
-		
+
+
 		<?php 
+//-------------------------------- dziekan
+
 		if(Auth::check() && Auth::user()->access == 2) {
 			if($thesis->approval) {
 				echo "<td>Praca zaakceptowana</td>";
 			}
 			else {
 		
-			if($thesis->reviewer == NULL){
+			//if($thesis->reviewer == NULL){
 			
-			$reviewers = DB::table('users')->where('access','=',1)->where('id', '!=', $thesis->lecturer_id)->get();
+			// $reviewers = DB::table('users')->where('access','=',1)->where('id', '!=', $thesis->lecturer_id)->get();
 				?>
-			
+<?php /* 		
 			<td>
 				{{ Form::open(['role' => 'form', 'url' => '/theses/addReviewer']) }}
 				  {{ Form::hidden('thesis_id', $thesis->id) }}
@@ -66,17 +69,23 @@ th, td {
 				  </div>
 				 {{ Form::close() }}
 			</td>
-		
+*/	?>
 			
-			<?php } else { ?>
-				<td>
-				<div class="btn btn-success btn-xs accept" ident="{{ $thesis->id }}">Akceptuj</div>
-				<!--   <div class="btn btn-danger btn-xs reject" >Odrzuć</div> -->
+			<?php // } else { ?>
+				<td>			
+				<form action="">
+				<input type="checkbox" class="thesisForApprove" name="checked" value= "<?php echo $thesis->id; ?>">
+				</form>				
+		<!--		<div class="btn btn-success btn-xs accept" ident="{{ $thesis->id }}">Akceptuj</div>  -->
 				</td>
 		<?php 
-			}
+		//	}
 		}
-		}
+		} 
+		
+		
+//-------------------------------- student
+
 		
 		else if(Auth::check() && Auth::user()->access == 1) {
 			if($thesis->student_id == NULL) {
@@ -114,25 +123,41 @@ th, td {
 					<td>Temat zarezerwowany</td>
 		</tr>
 		<?php 
-		  } } } ?>
+		  } } 
+		  
+//-------------------------------- niezalogowany
+
+		 else {
+		  		
+		  		if($thesis->student_id == NULL) {?>
+		  			<td><div>Temat wolny</div></td>
+		  <?php } else { ?>
+		  			<td><div>Temat zarezerwowany</div></td>
+		<?php } } }?>
 		  
 		@endforeach	
 		
 		</table>
 	
 	@endif
+<?php //-------------------------- guzik akceptuj	 ?>
+	<?php if(Auth::check() && Auth::user()->access == 2) { ?>
+	<div align="right"><div class="btn btn-success accept">Akceptuj</div></div>
+	<?php } ?>
 
-	
 <script>
 
-	
 
 	$( ".accept" ).click(function() {
 		var button = this;
-		$.get('http://localhost:8000/theses/'+$(this).attr('ident')+'/approve', function(data){
-			$(button).remove();
+
+		$('.thesisForApprove:checked').each(function(){
+			$.get('http://localhost:8000/theses/'+$(this).attr('value')+'/approve', function(data){
+				$(button).remove();
+			});
 		});
-		window.location=window.location;
+		
+ 		window.location=window.location;
 	});
 
 	$( ".reserved").click(function() {

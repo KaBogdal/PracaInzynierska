@@ -134,21 +134,25 @@
 							//$desc = $thesis->descr;
 							$lect = $thesis->lecturer_id;
 							$lect_name = User::findOrFail($lect)->name;
-							$rec = User::findOrFail($thesis->reviewer)->name?>
+							//$rec = User::findOrFail($thesis->reviewer)->name?>
 							<h3>Twoja praca dyplomowa </h3>
 							<?php if($thesis->docum == 1){ ?>
 						     	<br><br><font size="3"><div align="left">Temat Twojej pracy: <div><span class="showHide btn btn-success" style="cursor:pointer; font-size: 10px">Rozwiń</span>
 						     	<a href="/showThesis_{{$thesis->id}}" > {{ $thesis->subject }} </a> 
 						     	<div class="extendableText">{{ $thesis->descr }}</div>
 						     	<font size="3"><div align="left">Twój promotor: </font><?php echo $lect_name ?> </div>
-						     	<font size="3"><div align="left">Twój recenzent: </font><?php echo $rec ?> </div>
+			<?php /*	   		     
+				   		     	<font size="3"><div align="left">Twój recenzent: </font><?php echo $rec ?> </div>  	
+			*/ ?>					
 								<?php }
 								else{ ?>
 							<br><br><font size="3"><div align="left">Temat Twojej pracy: </div></font><span class="showHide btn btn-success" style="cursor:pointer; font-size: 10px">Rozwiń</span> {{ $thesis->subject }} <div class="extendableText">{{ $thesis->descr }}</div>
 							<font size="3"><div align="left">Twój promotor: </font><?php echo $lect_name ?></div>
-							<font size="3"><div align="left">Twój recenzent: </font><?php echo $rec ?> </div>
+		  	<?php /*				
+		  					<font size="3"><div align="left">Twój recenzent: </font> <?php echo $rec ?> </div>
+			*/?>
 								<?php } ?>
-							<!--...........    Dodawanie pracy na strone główną    ....................................-->
+	<!--...........    Dodawanie pracy na strone główną    ....................................-->
 						<br><br>
 							<?php if( $thesis->fileName == NULL){ ?>
 								   {{ Form::open(['role' => 'form', 'url' => '/theses/addThesis', 'files'=>true]) }}
@@ -206,7 +210,7 @@
 												<div class="row">
 													<div class="col-md-12">
 													
-														<form role="form" action='{{ url("/theses/create") }}' method="post">
+														<form role="form" id="form_to_check" action='{{ url("/theses/create") }}' method="post">
 															<div class="form-group" >
 																<label for="subject">
 																	Temat pracy
@@ -240,7 +244,7 @@
 																<br><input type="radio" name="spec" value="os"/>
 																	Ochrona Środowiska	
 															</div>
-															<button type="submit" class="btn btn-success">
+															<button type="submit" class="btn btn-success" id="submit">
 																Wyślij
 															</button>
 														</form>
@@ -328,6 +332,23 @@
 
 
 <script>
+
+$(function () {
+	
+    // When your submit button is clicked
+    $("#form_to_check").submit(function (e) {
+        // If it is not checked, prevent the default behavior (your submit)
+        if (!$('input[name="level"]').is(':checked') || !$('input[name="spec"]').is(':checked') ) {
+            alert("Upewnij się, że wybrałeś poziom i kierunek studiów!");
+            e.preventDefault();
+        	
+        }
+    });
+});
+
+
+
+
 $(function () {
 
 	$.get('http://localhost:8000/theses/waitingForApproval', function(data){
