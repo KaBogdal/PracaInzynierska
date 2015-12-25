@@ -77,24 +77,77 @@
 							<div class="tab-content">
 			<!--..................... Zakladka strony głownej ........................-->				
 								<div class="tab-pane active" id="panel-1">
-									<p>
-									 <div class="row" align="center">
-										<h2>
-											Serdecznie witamy! <br>
-											<small>Na naszej stronie znajdą Państwo prace dyplomowe
-												studentów wydziału Geologii Geofizyki i Ochrony Środowiska
-												Akademii Górniczo- Hutniczej.</small>
-										</h2>
-									</div>
+					
+					<br>				
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-9">
+			<h3>
+				Aplikacja do rejestracji prac dyplomowych wGGiOŚ
+			</h3>
+			<div class="row">
+			<br>
+				<div class="col-md-9">
+					<p>
+					Serdecznie witamy w serwisie prac dyplomowych wydziału Geologii, Geofizyki i Ochrony Środowiska.
+					Jest on przeznaczony do zarządzania tematami prac inżynierskich oraz magisterskich przez pracowników wydziału oraz 
+					pozwala studentom rezerwować temat i dodać gotową pracę na portal.
+					Ponadto aplikacja umożliwia niezalogowanemu użytkownikowi na przegląd prac studentów wszystkich kierunków wydziału.
+					
+					</p>
+				</div>
+				<div class="col-md-3">
+					<img alt="A0" height="100" width="150" src="A0.jpg" />
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>
+							Na skróty
+						</th>
+					</tr>
+				</thead>
+			<tbody>
+				<tr>
+					<td>
+						<a href="http://www.agh.edu.pl/">AGH</a>
+					</td>
+				</tr>
+				<tr class="active">
+					<td>
+						<a href="http://www.wggios.agh.edu.pl/">wGGiOŚ</a>
+					</td>
+				</tr>
+				<tr class="success">
+					<td>
+						<a href="https://dziekanat.agh.edu.pl/">Wirtualna Uczelnia</a>
+					</td>
+				</tr>
+				<tr class="warning">
+					<td>
+						<a href="http://sprawdz.plan.agh.edu.pl/">UniTime</a>
+					</td>
+				</tr>
+				<tr class="danger">
+					<td>
+						<a href="http://syllabuskrk.agh.edu.pl/2015-2016/en/treasuries/academy_units/offer">Syllabus</a>
+					</td>
+				</tr>
+			</tbody>
+			</table>
+		</div>
+	</div>
+</div>
 									
-									<dl>
-										<dt>Description lists</dt>
-										<dd>A description list is perfect for defining terms.</dd>
-										<dt>Euismod</dt>
-										<dd>Vestibulum id ligula porta felis euismod semper eget
-											lacinia odio sem nec elit.</dd>
-									</dl>
-									</p>
+									
+									
+									
+									
+									
+									
 								</div>
 			<!--..................... Zakladka dla drzewa rozwijanego ........................-->
 								<div class="tab-pane" id="panel-2">
@@ -268,11 +321,7 @@
 								</div>
 							</div>
 						</div>
-						
-						
-						
-						
-						
+					
 						 
 						<?php }?>
 <!--.................................   Zalogowany jako dziekan    ....................................-->
@@ -289,7 +338,7 @@
 												<a href="#panel-thesises" data-toggle="tab">Prace do zaakceptowania</a>
 											</li>
 											<li>
-												<a href="#panel-450881" data-toggle="tab">Section 2</a>
+												<a href="#panel-450881" data-toggle="tab">Section2</a>
 											</li>
 										</ul>
 										<div class="tab-content">
