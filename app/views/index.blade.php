@@ -179,9 +179,6 @@
 		</div>
 	</div>
 	
-	<div id="searched-found">
-	</div>
-
 </div>
 									
 
@@ -433,9 +430,6 @@ $(function () {
 		$('#panel-thesises').html(data); 
 	});
 	
-	$.get('http://localhost:8000/theses/searchedList', function(data){
-		$('#searched-found').html(data);
-	});
 
 	$('#my-theses').click(function(){
 		$.get('http://localhost:8000/theses/allThesesList/'+$(this).attr('lecturer'), function(data){		
