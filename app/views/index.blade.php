@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="bootstrap-theme.min.css">
 
 <script src="jquery-1.11.3.min.js"></script>
+<script src="notify.js"></script>
 <script src="bootstrap.min.js"></script>
 <link rel="stylesheet" href="css.css">
 
@@ -93,9 +94,12 @@
 					Jest on przeznaczony do zarządzania tematami prac inżynierskich oraz magisterskich przez pracowników wydziału oraz 
 					pozwala studentom rezerwować temat i dodać gotową pracę na portal.
 					Ponadto aplikacja umożliwia niezalogowanemu użytkownikowi na przegląd prac studentów wszystkich kierunków wydziału.
-					
 					</p>
+							
 				</div>
+				
+				
+				
 				<div class="col-md-3">
 					<img alt="A0" height="100" width="150" src="A0.jpg" />
 				</div>
@@ -140,14 +144,7 @@
 			</table>
 		</div>
 	</div>
-</div>
-									
-									
-									
-									
-									
-									
-									
+</div>						
 								</div>
 			<!--..................... Zakladka dla drzewa rozwijanego ........................-->
 								<div class="tab-pane" id="panel-2">
@@ -155,6 +152,38 @@
 									<p>
 										Wybierz kierunek z panelu znajdującego się po lewej stronie.
 									</p>
+								
+									<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-6">
+			<nav class="navbar navbar-default" role="navigation">
+				<div class="navbar-header"> 
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Wyszukiwarka</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+				</div>
+				
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<form class="navbar-form navbar-left" role="search" action='{{ url("/theses/search") }}' method="post">
+						<div class="form-group">
+						<label for="searched">
+							<input type="text" class="form-control" />
+						</label>
+						</div> 
+						<button type="submit" class="btn btn-default">
+							Wyszukaj
+						</button>
+					</form>
+				</div>
+				
+			</nav>
+		</div>
+	</div>
+	
+	<div id="searched-found">
+	</div>
+
+</div>
+									
 
 								</div>
 			<!--..................... Opis do strony publicznej ........................-->
@@ -381,6 +410,7 @@
 
 
 <script>
+											
 
 $(function () {
 	
@@ -390,7 +420,6 @@ $(function () {
         if (!$('input[name="level"]').is(':checked') || !$('input[name="spec"]').is(':checked') ) {
             alert("Upewnij się, że wybrałeś poziom i kierunek studiów!");
             e.preventDefault();
-        	
         }
     });
 });
@@ -403,14 +432,19 @@ $(function () {
 	$.get('http://localhost:8000/theses/waitingForApproval', function(data){
 		$('#panel-thesises').html(data); 
 	});
+	
+	$.get('http://localhost:8000/theses/searchedList', function(data){
+		$('#searched-found').html(data);
+	});
 
 	$('#my-theses').click(function(){
-		$.get('http://localhost:8000/theses/allThesesList/'+$(this).attr('lecturer'), function(data){
+		$.get('http://localhost:8000/theses/allThesesList/'+$(this).attr('lecturer'), function(data){		
 			$('#panel-lectorer-thesises').html(data); 
 		});
 	});
 
 	$('#review-theses').click(function(){
+
 		$.get('http://localhost:8000/theses/allReviewedList/'+$(this).attr('reviewer'), function(data){
 			$('#panel-reviewer-thesises').html(data); 
 		});
