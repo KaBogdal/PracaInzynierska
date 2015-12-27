@@ -2,7 +2,6 @@
 <link rel="stylesheet" href="bootstrap-theme.min.css">
 
 <script src="jquery-1.11.3.min.js"></script>
-<script src="notify.js"></script>
 <script src="bootstrap.min.js"></script>
 <link rel="stylesheet" href="css.css">
 
@@ -22,34 +21,34 @@
 					<!--..................... Drzewo studiow Iwszego stopnia ........................-->
 					<li><span><i class="icon-folder-open"></i> Studia I-ego stopnia</span>
 						<ul>
+							<li><span><i class="icon-minus-sign"></i>2016/2017</span>
+								<ul>
+									<li><span><i class="icon-leaf"><a class="thesislink" spec="inf" year="2016" lev = "1" href="#panel-2" data-toggle="tab"></i>Informatyka Stosowana</a></span></li>
+									<li><span><i class="icon-leaf"><a class="thesislink" spec="geo" year="2016" lev = "1" href="#panel-2" data-toggle="tab" href=""></i>Geofizyka</a></span></li>
+									<li><span><i class="icon-leaf"><a class="thesislink" spec="os" year="2016" lev = "1" href="#panel-2" data-toggle="tab"></i>Ochrona Środowiska</a></span></li>
+								</ul></li>
 							<li><span><i class="icon-minus-sign"></i>2015/2016</span>
 								<ul>
 									<li><span><i class="icon-leaf"><a class="thesislink" spec="inf" year="2015" lev = "1" href="#panel-2" data-toggle="tab"></i>Informatyka Stosowana</a></span></li>
-									<li><span><i class="icon-leaf"><a class="thesislink" spec="geo" year="2015" lev = "1" href="#panel-2" data-toggle="tab" href=""></i>Geofizyka</a></span></li>
+									<li><span><i class="icon-leaf"><a class="thesislink" spec="geo" year="2015" lev = "1" href="#panel-2" data-toggle="tab"></i>Geofizyka</a></span></li>
 									<li><span><i class="icon-leaf"><a class="thesislink" spec="os" year="2015" lev = "1" href="#panel-2" data-toggle="tab"></i>Ochrona Środowiska</a></span></li>
-								</ul></li>
-							<li><span><i class="icon-minus-sign"></i>2014/2015</span>
-								<ul>
-									<li><span><i class="icon-leaf"><a class="thesislink" spec="inf" year="2014" lev = "1" href="#panel-2" data-toggle="tab"></i>Informatyka Stosowana</a></span></li>
-									<li><span><i class="icon-leaf"><a class="thesislink" spec="geo" year="2014" lev = "1" href="#panel-2" data-toggle="tab"></i>Geofizyka</a></span></li>
-									<li><span><i class="icon-leaf"><a class="thesislink" spec="os" year="2014" lev = "1" href="#panel-2" data-toggle="tab"></i>Ochrona Środowiska</a></span></li>
 							</ul></li>
 							
 						</ul></li>
 					<!--..................... Drzewo studiow IIgiego stopnia ........................-->
 					<li><span><i class="icon-folder-open"></i> Studia II-ego stopnia</span>
 						<ul>
-							<li><span><i class="icon-minus-sign"></i>2015/2016</span>
+							<li><span><i class="icon-minus-sign"></i>2016/2017</span>
 							<ul>
+									<li><span><i class="icon-leaf"><a class="thesislink" spec="inf" year="2016" lev="2" href="#panel-2" data-toggle="tab"></i>Informatyka Stosowana</a></span></li>
+									<li><span><i class="icon-leaf"><a class="thesislink" spec="geo" year="2016" lev="2" href="#panel-2" data-toggle="tab"></i>Geofizyka</a></span></li>
+									<li><span><i class="icon-leaf"><a class="thesislink" spec="os" year="2016" lev="2" href="#panel-2" data-toggle="tab"></i>Ochrona Środowiska</a></span></li>
+								</ul></li>
+							<li><span><i class="icon-minus-sign"></i>2015/2016</span>
+								<ul>
 									<li><span><i class="icon-leaf"><a class="thesislink" spec="inf" year="2015" lev="2" href="#panel-2" data-toggle="tab"></i>Informatyka Stosowana</a></span></li>
 									<li><span><i class="icon-leaf"><a class="thesislink" spec="geo" year="2015" lev="2" href="#panel-2" data-toggle="tab"></i>Geofizyka</a></span></li>
 									<li><span><i class="icon-leaf"><a class="thesislink" spec="os" year="2015" lev="2" href="#panel-2" data-toggle="tab"></i>Ochrona Środowiska</a></span></li>
-								</ul></li>
-							<li><span><i class="icon-minus-sign"></i>2014/2015</span>
-								<ul>
-									<li><span><i class="icon-leaf"><a class="thesislink" spec="inf" year="2014" lev="2" href="#panel-2" data-toggle="tab"></i>Informatyka Stosowana</a></span></li>
-									<li><span><i class="icon-leaf"><a class="thesislink" spec="geo" year="2014" lev="2" href="#panel-2" data-toggle="tab"></i>Geofizyka</a></span></li>
-									<li><span><i class="icon-leaf"><a class="thesislink" spec="os" year="2014" lev="2" href="#panel-2" data-toggle="tab"></i>Ochrona Środowiska</a></span></li>
 							</ul></li>
 						</ul></li>
 				</ul>
@@ -84,7 +83,7 @@
 	<div class="row">
 		<div class="col-md-9">
 			<h3>
-				Aplikacja do rejestracji prac dyplomowych wGGiOŚ
+				Aplikacja do rejestracji prac dyplomowych WGGiOŚ
 			</h3>
 			<div class="row">
 			<br>
@@ -122,7 +121,7 @@
 				</tr>
 				<tr class="active">
 					<td>
-						<a href="http://www.wggios.agh.edu.pl/">wGGiOŚ</a>
+						<a href="http://www.wggios.agh.edu.pl/">WGGiOŚ</a>
 					</td>
 				</tr>
 				<tr class="success">
@@ -149,36 +148,49 @@
 			<!--..................... Zakladka dla drzewa rozwijanego ........................-->
 								<div class="tab-pane" id="panel-2">
 									
-									<p>
-										Wybierz kierunek z panelu znajdującego się po lewej stronie.
+									<p><br>
+										Możesz znaleźć pracę używając drzewa rozwijanego, znajdującego się po lewej stronie, lub użyt poniższych
+										 kryteriów wyszukiwania.
 									</p>
 								
-									<div class="container-fluid">
+	<div class="container-fluid">
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-9">
 			<nav class="navbar navbar-default" role="navigation">
 				<div class="navbar-header"> 
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 				<span class="sr-only">Wyszukiwarka</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-				</div>
-				
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<form class="navbar-form navbar-left" role="search" action='{{ url("/theses/search") }}' method="post">
-						<div class="form-group">
-						<label for="searched">
-							<input type="text" class="form-control" />
-						</label>
-						</div> 
-						<button type="submit" class="btn btn-default">
-							Wyszukaj
-						</button>
-					</form>
-				</div>
-				
+				</div>				
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					
+						<form class="navbar-form navbar-left" role="search" action='{{ url("/search") }}' method="post">
+							<div class="form-group">
+							<label for="searched">
+								Wyszukaj po tytule/ opisie pracy:
+							</label>
+								<input type="text" class="form-control" name="searched" />
+							</div>
+							<button type="submit" class="btn btn-primary btn-xs">
+								Wyszukaj
+							</button>
+						</form>
+						<form class="navbar-form navbar-left" role="search" action='{{ url("/searchLect") }}' method="post">
+							<div class="form-group">
+							<label for="searched_lect">
+								Wyszukaj prac danego opiekuna naukowego:
+							</label>
+								<input type="text" class="form-control" name="searched_lect" />
+							</div>
+							<button type="submit" class="btn btn-success btn-xs">
+								Wyszukaj
+							</button>
+						</form>
+					</div>
+					
 			</nav>
 		</div>
 	</div>
-	
+
 </div>
 									
 
@@ -429,6 +441,10 @@ $(function () {
 	$.get('http://localhost:8000/theses/waitingForApproval', function(data){
 		$('#panel-thesises').html(data); 
 	});
+
+//	$.get('http://localhost:8000/theses/searchedList', function(data){
+//		$('#searched_function').html(data); 
+//	});
 	
 
 	$('#my-theses').click(function(){

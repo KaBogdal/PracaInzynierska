@@ -23,7 +23,8 @@ Route::post('login', array('uses' => 'HomeController@doLogin'));
 Route::get('logout', array('uses' => 'HomeController@doLogout'));
 
 Route::post('/theses/create', 'ThesisController@create');
-Route::post('/theses/search', 'ThesisController@search');
+Route::post('/search', 'ThesisController@search');
+Route::post('/searchLect', 'ThesisController@searchLect');
 //Route::post('/theses/addThesis', 'ThesisController@addThesis');
 
 Route::resource('/theses/addThesis', 'ThesisController');
@@ -34,7 +35,7 @@ Route::post('/theses/addRNote', 'ThesisController@addRNote');
 
 Route::get('/theses', 'ThesisController@getTheses');
 Route::get('/theses/waitingForApproval', 'ThesisController@getThesisforApproval');
-Route::get('/theses/searchedList', 'ThesisController@getSearchedList');
+//Route::get('/theses/searchedList', 'ThesisController@getSearchedList');
 Route::get('/theses/allThesesList/{lecturer}', 'ThesisController@getThesisList');
 Route::get('/theses/allReviewedList/{reviewer}', 'ThesisController@getReviewedList');
 Route::get('/theses/{id}/approve', 'ThesisController@approve');

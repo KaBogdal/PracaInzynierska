@@ -11,15 +11,59 @@ th, td {
 <?php  if(isset($approval) && $approval) {?>
 <h3>Prace dyplomowe dla kierunku: <div id="field" style="display:inline;"> </div> </h3>
 <?php }?>
+			<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-9">
+			<nav class="navbar navbar-default" role="navigation">
+				<div class="navbar-header"> 
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Wyszukiwarka</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+				</div>				
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					
+						<form class="navbar-form navbar-left" role="search" action='{{ url("/search") }}' method="post">
+							<div class="form-group">
+							<label for="searched">
+								Wyszukaj po tytule/ opisie pracy:
+							</label>
+								<input type="text" class="form-control" name="searched" />
+							</div>
+							<button type="submit" class="btn btn-primary btn-xs">
+								Wyszukaj
+							</button>
+						</form>
+						<form class="navbar-form navbar-left" role="search" action='{{ url("/searchLect") }}' method="post">
+							<div class="form-group">
+							<label for="searched_lect">
+								Wyszukaj prac danego opiekuna naukowego:
+							</label>
+								<input type="text" class="form-control" name="searched_lect" />
+							</div>
+							<button type="submit" class="btn btn-success btn-xs">
+								Wyszukaj
+							</button>
+						</form>
+					</div>
+					
+			</nav>
+		</div>
+	</div>
+
+</div>
 @if (!isset($theses) || !count($theses))
 		<span>Nie ma prac z tego dzialu.</span>
 	@else
-	
+		
+		<?php  if(Auth::check() && Auth::user()->access == 2) { ?>
+			<input type="checkbox" onClick="toggle(this)"/>Zaznacz wszystko<br/>
+		<?php } ?>
+		
 	<table style="width:800px">
 		<tr><th style="width:70%">Temat</th>
 		    <th style="width:20%">Opiekun naukowy</th>		
 		    <th style="width:10%">Status</th>
-    	</tr>	
+    	</tr>
+		
 		@foreach ($theses as $thesis)
 
 		 <?php $lectorers = DB::table('users')->where('access','=',1)->where('id', '=', $thesis->lecturer_id)->get(); 
@@ -44,6 +88,7 @@ th, td {
 //-------------------------------- dziekan
 
 		if(Auth::check() && Auth::user()->access == 2) {
+		
 			if($thesis->approval) {
 				echo "<td>Praca zaakceptowana</td>";
 			}
@@ -70,7 +115,6 @@ th, td {
 				 {{ Form::close() }}
 			</td>
 */	?>
-			
 			<?php // } else { ?>
 				<td>			
 				<form action="">
@@ -145,7 +189,18 @@ th, td {
 	<div align="right"><div class="btn btn-success accept">Akceptuj</div></div>
 	<?php } ?>
 
+<script language="JavaScript">
+	function toggle(source) {
+		  checkboxes = document.getElementsByName('checked');
+		  for(var i=0, n=checkboxes.length;i<n;i++) {
+		    checkboxes[i].checked = source.checked;
+		  }
+		}
+</script>
+	
 <script>
+
+
 
 
 	$( ".accept" ).click(function() {
