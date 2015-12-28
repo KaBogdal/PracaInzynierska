@@ -385,7 +385,7 @@
 											</div>
 											<div class="tab-pane" id="panel-450881">
 												<p>
-													Howdy, I'm in Section 2.
+													<div class="tab-pane" id="admin-charts">
 												</p>
 											</div>
 										</div>
@@ -442,9 +442,9 @@ $(function () {
 		$('#panel-thesises').html(data); 
 	});
 
-//	$.get('http://localhost:8000/theses/searchedList', function(data){
-//		$('#searched_function').html(data); 
-//	});
+	$.get('http://localhost:8000/theses/adminCharts', function(data){
+		$('#admin-charts').html(data); 
+	});
 	
 
 	$('#my-theses').click(function(){
