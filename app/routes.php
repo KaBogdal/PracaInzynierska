@@ -35,7 +35,7 @@ Route::post('/theses/addRNote', 'ThesisController@addRNote');
 
 Route::get('/theses', 'ThesisController@getTheses');
 Route::get('/theses/waitingForApproval', 'ThesisController@getThesisforApproval');
-//Route::get('/theses/searchedList', 'ThesisController@getSearchedList');
+Route::get('/theses/adminCharts', 'ThesisController@getadminCharts');
 Route::get('/theses/allThesesList/{lecturer}', 'ThesisController@getThesisList');
 Route::get('/theses/allReviewedList/{reviewer}', 'ThesisController@getReviewedList');
 Route::get('/theses/{id}/approve', 'ThesisController@approve');

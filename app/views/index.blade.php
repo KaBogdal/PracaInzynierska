@@ -376,13 +376,15 @@
 												<a href="#panel-thesises" data-toggle="tab">Prace do zaakceptowania</a>
 											</li>
 											<li>
-												<a href="#panel-450881" data-toggle="tab">Section2</a>
+												<a href="#panel-450881" data-toggle="tab">Statystyki</a>
 											</li>
 										</ul>
 										<div class="tab-content">
 											<div class="tab-pane active" id="panel-thesises">
 												
 											</div>
+										
+                     <!-- -------------  Sekcja wykresow admina!     --------------  -->										
 											<div class="tab-pane" id="panel-450881">
 												<p>
 													<div class="tab-pane" id="admin-charts">
