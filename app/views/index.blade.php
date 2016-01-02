@@ -5,11 +5,16 @@
 <script src="bootstrap.min.js"></script>
 <link rel="stylesheet" href="css.css">
 
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
 
 @extends('layout.default')
 @section('content')
 
 <div class="container-fluid">
+
 
 
 
@@ -249,15 +254,16 @@
 								   {{ Form::open(['role' => 'form', 'url' => '/theses/addThesis', 'files'=>true]) }}
 								            <div class="control-group">
 			          							<div class="controls">
-						          					{{ Form::file('image') }}
-							  						<p class="errors">{{$errors->first('image')}}</p>
-											
+			          							  <label class="btn btn-primary" for="my-file-selector"> 
+						          						 <input id="my-file-selector" name="image" type="file" >
+						          				 </label>  
+												<p class="errors">{{$errors->first('image')}}</p>
 										        </div>
 									        </div>
 							    <div class='form-group' id="success">
-							        {{ Form::submit('Dodaj pracę', ['class' => 'btn btn-success']) }}
+							        {{ Form::submit('Wyślij', ['class' => 'btn btn-success']) }}
 							    </div>
-						 	<font size="1"><div align="left">Uwaga! Po naciśnięciu przycisku: "Wyślij" nie będziesz miał
+						 	<font size="1"><div align="left">Uwaga! Po naciśnięciu przycisku: "Wyślij" nie będzie
 										możliwości cofnięcia akcji dodawania pracy- pojawi się ona automatycznie na stronie głównej!</div></font>
 						    {{ Form::close() }}
 						   <?php  } 
@@ -421,7 +427,7 @@
 
 
 <script>
-											
+
 
 $(function () {
 	
@@ -429,7 +435,7 @@ $(function () {
     $("#form_to_check").submit(function (e) {
         // If it is not checked, prevent the default behavior (your submit)
         if (!$('input[name="level"]').is(':checked') || !$('input[name="spec"]').is(':checked') ) {
-            alert("Upewnij się, że wybrałeś poziom i kierunek studiów!");
+        	alert("Upewnij się, że wybrałeś poziom i kierunek studiów!");
             e.preventDefault();
         }
     });
