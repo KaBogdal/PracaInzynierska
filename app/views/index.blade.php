@@ -309,10 +309,8 @@
 													
 														<form role="form" id="form_to_check" action='{{ url("/theses/create") }}' method="post">
 															<div class="form-group" >
-																<label for="subject">
-																	Temat pracy
-																</label>
-																<input type="text" class="form-control" name="subject" />
+															<label for="subject">Temat pracy</label>
+															<input type="text" class="form-control" name="subject" pattern=".{5,200}" required title="Od 5 do 200 znaków!" maxlength="200"/>
 															</div>
 															<div class="form-group">
 																<label for="description">

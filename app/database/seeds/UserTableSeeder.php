@@ -15,6 +15,16 @@ public function run()
     	'access' => 0,
     	'field_id' => 1,
     ));
+    
+    User::create(array(
+    		'name'     => 'Stefan Przepiórczy',
+    		'username' => 'PrzepiórczyS',
+    		'email'    => 'sp@gmail.com',
+    		'password' => Hash::make('123'),
+    		'access' => 0,
+    		'field_id' => 1,
+    ));
+    
     User::create(array(
     		'name'     => 'Anna Mała',
     		'username' => 'MałaA',
@@ -47,17 +57,77 @@ public function run()
     		'access' => 0,
     		'field_id' => 5,
     ));
+    
     User::create(array(
-    		'name'     => 'Stefan Przepiórczy',
-    		'username' => 'PrzepiórczyS',
-    		'email'    => 'sp@gmail.com',
+    		'name'     => 'Szczepan Kaczka',
+    		'username' => 'KaczkaS',
+    		'email'    => 'ks@gmail.com',
+    		'password' => Hash::make('123'),
+    		'access' => 0,
+    		'field_id' => 6,
+    ));
+    User::create(array(
+    		'name'     => 'Karol Kuzora',
+    		'username' => 'KuzoraK1',
+    		'email'    => 'kk1@gmail.com',
     		'password' => Hash::make('123'),
     		'access' => 0,
     		'field_id' => 1,
     ));
+    
+    User::create(array(
+    		'name'     => 'Stefan Przepiórczy',
+    		'username' => 'PrzepiórczyS1',
+    		'email'    => 'sp1@gmail.com',
+    		'password' => Hash::make('123'),
+    		'access' => 0,
+    		'field_id' => 1,
+    ));
+    
+    User::create(array(
+    		'name'     => 'Anna Mała',
+    		'username' => 'MałaA1',
+    		'email'    => 'am1@gmail.com',
+    		'password' => Hash::make('123'),
+    		'access' => 0,
+    		'field_id' => 2,
+    ));
+    User::create(array(
+    		'name'     => 'Tadeusz Woźny',
+    		'username' => 'WoźnyT1',
+    		'email'    => 'tw1@gmail.com',
+    		'password' => Hash::make('123'),
+    		'access' => 0,
+    		'field_id' => 3,
+    ));
+    User::create(array(
+    		'name'     => 'Wojciech Pocieszny',
+    		'username' => 'PociesznyW1',
+    		'email'    => 'wp1@gmail.com',
+    		'password' => Hash::make('123'),
+    		'access' => 0,
+    		'field_id' => 4,
+    ));
+    User::create(array(
+    		'name'     => 'Dorota Zawadzka',
+    		'username' => 'ZawadzkaD1',
+    		'email'    => 'dz1@gmail.com',
+    		'password' => Hash::make('123'),
+    		'access' => 0,
+    		'field_id' => 5,
+    ));
+    
+    User::create(array(
+    		'name'     => 'Szczepan Kaczka',
+    		'username' => 'KaczkaS1',
+    		'email'    => 'ks1@gmail.com',
+    		'password' => Hash::make('123'),
+    		'access' => 0,
+    		'field_id' => 6,
+    ));
 //------------------------------------------------------------------ Lecturers
     User::create(array(
-    		'name'     => 'Atoni Krem',
+    		'name'     => 'Antoni Krem',
     		'username' => 'KremA',
     		'email'    => 'ak@gmail.com',
     		'password' => Hash::make('123'),
